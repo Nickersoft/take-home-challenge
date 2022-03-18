@@ -1,0 +1,14 @@
+.Output {
+  margin: 20px 0;
+  width: 480px;
+}
+
+.Output > p:first-child {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+}
+
+.Output > p:last-child {
+  font-style: italic;
+}

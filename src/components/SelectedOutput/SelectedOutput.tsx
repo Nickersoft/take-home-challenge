@@ -1,6 +1,8 @@
-import React from 'react'
+import React from "react";
 
-function SelectedOutput({ selected = 'Nothing selected' }) {
+import "./SelectedOutput.css";
+
+function SelectedOutput({ selected = "Nothing selected" }) {
   const selectedString = selected.toString();
   return (
     <div className="Output" data-cy="selected-output">

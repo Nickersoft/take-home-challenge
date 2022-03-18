@@ -1,0 +1,40 @@
+.Instructions {
+  flex: 0;
+  padding: 40px 0;
+}
+
+.Instructions li {
+  margin-bottom: 4px;
+}
+
+.Instructions em {
+  color: #333;
+  font-weight: 700;
+}
+
+.Instructions code {
+  font-size: 0.875rem;
+  padding: 2px 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.Instructions > .Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+}
+
+.Instructions > .Header > .Logo {
+  flex: 0;
+  padding-right: 40px;
+}
+
+.Instructions > .Header > .Text {
+  flex: 1;
+  font-size: 30px;
+  line-height: 44px;
+  font-weight: 700;
+  text-align: right;
+}
