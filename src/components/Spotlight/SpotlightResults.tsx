@@ -16,11 +16,10 @@ function SpotlightResults({ sections, onSelect }: Props) {
   const { selectedItem, setSelectedItemID } = useContext(SelectedItemContext);
 
   const onSubmit = useCallback(() => {
-    console.log(selectedItem);
     if (selectedItem) {
       onSelect(selectedItem);
     }
-  }, [selectedItem]);
+  }, [selectedItem, onSelect]);
 
   const onEnter = useCallback(
     (e: KeyboardEvent) => {
@@ -31,13 +30,16 @@ function SpotlightResults({ sections, onSelect }: Props) {
     [onSubmit]
   );
 
-  const onMouseMove = (e: MouseEvent) => {
-    const itemID = (e.target as any)?.getAttribute("data-item-id");
+  const onMouseMove = useCallback(
+    (e: MouseEvent) => {
+      const itemID = (e.target as any)?.getAttribute("data-item-id");
 
-    if (itemID && itemID !== selectedItem?.id) {
-      setSelectedItemID(itemID);
-    }
-  };
+      if (itemID && itemID !== selectedItem?.id) {
+        setSelectedItemID(itemID);
+      }
+    },
+    [setSelectedItemID, selectedItem]
+  );
 
   useEffect(() => {
     node.current?.addEventListener("mousedown", onSubmit);

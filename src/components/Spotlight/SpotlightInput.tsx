@@ -15,8 +15,8 @@ function SpotlightInput({ onSearch }: Props) {
   const { results, search } = useSearch();
 
   useEffect(
-    () => onSearch( Object.values(aggregateResults(results))),
-    [results]
+    () => onSearch(Object.values(aggregateResults(results))),
+    [results, onSearch]
   );
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function SpotlightInput({ onSearch }: Props) {
 
   return (
     <div className="SpotlightInput">
-      <img src="/magnifyingglass.svg" className="search-icon" />
+      <img alt="" src="/magnifyingglass.svg" className="search-icon" />
       <input
         ref={inputNode}
         onChange={(e) => search(e.target?.value)}
