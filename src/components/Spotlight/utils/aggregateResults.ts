@@ -12,6 +12,7 @@ function aggregateResults(results: Fuse.FuseResult<Model>[]) {
     .reduce((acc, v) => {
       if (v.type in acc) {
         acc[v.type].items.push(v);
+        acc[v.type].items.sort((a, b) => a.id.localeCompare(b.id));
       } else {
         acc[v.type] = { title: startCase(v.type), items: [v] };
       }

@@ -1,20 +1,19 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 
 import { Model } from "../../API";
 
 import SelectedItemContext from "./contexts/SelectedItemContext";
-import useKeyboardNavigation from "./hooks/useKeyboardNavigation";
-import SpotlightSection from "./SpotlightSection";
+import SpotlightSection, { SpotlightSectionType } from "./SpotlightSection";
 
 type Props = {
-  sections: { title: string; items: Model[] }[];
+  sections: SpotlightSectionType[];
   onSelect: (item: Model) => void;
 };
 
 function SpotlightResults({ sections, onSelect }: Props) {
   const node = useRef<HTMLDivElement | null>(null);
 
-  const [selectedItem, setSelectedItemID] = useKeyboardNavigation(sections);
+  const { selectedItem, setSelectedItemID } = useContext(SelectedItemContext);
 
   const onSubmit = useCallback(() => {
     console.log(selectedItem);
@@ -59,13 +58,11 @@ function SpotlightResults({ sections, onSelect }: Props) {
   }
 
   return (
-    <SelectedItemContext.Provider value={{ selectedItem, setSelectedItemID }}>
-      <div ref={node} className="search-results">
-        {sections.map((section) => (
-          <SpotlightSection key={section.title} section={section} />
-        ))}
-      </div>
-    </SelectedItemContext.Provider>
+    <div ref={node} className="SpotlightResults">
+      {sections.map((section) => (
+        <SpotlightSection key={section.title} section={section} />
+      ))}
+    </div>
   );
 }
 

@@ -1,5 +1,3 @@
-import { startCase } from "lodash";
-
 import { Model } from "../../API";
 
 import SpotlightSectionItem from "./SpotlightSectionItem";
@@ -20,7 +18,7 @@ function SpotlightSection({ section: { title, items } }: Props) {
 
   return (
     <section>
-      <h6>{startCase(title)}</h6>
+      <h6>{title}</h6>
       <ul>
         {items.map((result) => (
           <SpotlightSectionItem key={result.id} item={result} />

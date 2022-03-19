@@ -27,7 +27,7 @@ function useKeyboardNavigation(sections: SpotlightSectionType[]) {
       if (nextItem) {
         setSelectedItemID(nextItem.id);
 
-        // Workaround for preventing scrolling-into-view when users mouseover items
+        // Workaround for preventing scrolling-into-view when users mouseover items instead of using the keyboard
         // For the record – I don't like this approach
         document
           .querySelector(`[data-item-id="${nextItem.id}"`)

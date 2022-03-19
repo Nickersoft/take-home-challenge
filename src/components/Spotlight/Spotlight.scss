@@ -2,109 +2,119 @@ $borderColor: rgba(0, 0, 0, 0.12);
 $baseColor: #3d3d3d;
 $highlightColor: #5192f4;
 
-.Overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  content: "";
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
 }
 
 .Spotlight {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  border: 0.5px solid $borderColor;
-  width: 90%;
   max-width: 500px;
-  display: flex;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  flex-direction: column;
-  backdrop-filter: blur(60px);
+  transform: translateX(-50%);
+  border-radius: 8px;
+  top: 15%;
+  width: 90%;
   max-height: 300px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: 50%;
   overflow: hidden;
+  backdrop-filter: blur(60px);
+  border: 0.5px solid $borderColor;
+  background: rgba(255, 255, 255, 0.6);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
 
-  .search-area {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-bottom: 0.5px solid $borderColor;
-    padding: 12px;
+.SpotlightInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 0.5px solid $borderColor;
+  padding: 12px;
 
-    .search-icon {
-      width: 16px;
-      height: 16px;
-      margin-right: 4px;
-    }
-
-    .search-input {
-      border: 0;
-      font-family: inherit;
-      flex: 1;
-      font-size: 1rem;
-      outline: none;
-      background: none;
-
-      &::-webkit-search-decoration,
-      &::-webkit-search-cancel-button,
-      &::-webkit-search-results-button,
-      &::-webkit-search-results-decoration {
-        -webkit-appearance: none;
-      }
-
-      &::placeholder {
-        color: rgba($baseColor, 0.3);
-      }
-    }
+  .search-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
   }
 
-  .search-results {
-    padding: 16px 14px;
+  .search-input {
+    border: 0;
+    font-family: inherit;
     flex: 1;
-    overflow: scroll;
+    font-size: 1rem;
+    outline: none;
+    background: none;
 
-    section {
-      border-bottom: 1px solid $borderColor;
-      padding: 4px 0;
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+    }
 
-      &:last-of-type {
-        border: 0;
-        padding-bottom: 0;
-      }
+    &::placeholder {
+      color: rgba($baseColor, 0.3);
+    }
+  }
+}
+.SpotlightResults {
+  padding: 16px 14px;
+  flex: 1;
+  overflow: scroll;
 
-      h6 {
-        font-weight: bold;
-        font-size: 0.65rem;
-        color: rgba($baseColor, 0.3);
-        margin: 0;
-        user-select: none;
-        padding: 4px 2px;
-      }
+  section {
+    border-bottom: 1px solid $borderColor;
+    padding: 4px 0;
 
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    &:last-of-type {
+      border: 0;
+      padding-bottom: 0;
+    }
 
-        li {
-          font-size: 0.8rem;
-          line-height: 1.25em;
-          padding: 4px;
-          color: $baseColor;
-          border-radius: 4px;
+    h6 {
+      font-weight: bold;
+      font-size: 0.65rem;
+      color: rgba($baseColor, 0.3);
+      margin: 0;
+      user-select: none;
+      padding: 4px 2px;
+    }
 
-          &.active {
-            color: #fff;
-            background: $highlightColor;
-            cursor: pointer;
-          }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 0.8rem;
+        line-height: 1.25em;
+        padding: 4px;
+        color: $baseColor;
+        border-radius: 4px;
+
+        &.active {
+          color: #fff;
+          background: $highlightColor;
+          cursor: pointer;
         }
       }
     }
