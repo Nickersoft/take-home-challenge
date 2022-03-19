@@ -53,7 +53,7 @@ function SpotlightResults({ sections, onSelect }: Props) {
 
       document.removeEventListener("keydown", onEnter);
     };
-  }, [node, onEnter, onMouseMove, onSubmit]);
+  }, [node.current, sections, onEnter, onMouseMove, onSubmit]);
 
   if (sections.length === 0) {
     return null;

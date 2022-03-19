@@ -36,8 +36,10 @@ function App() {
 
         <Spotlight
           visible={spotlightOpen}
+          onDismiss={() => {
+            setSpotlightOpened(false);
+          }}
           onSelect={(item) => {
-            console.log(item);
             setSelected(item.id);
             setSpotlightOpened(false);
           }}

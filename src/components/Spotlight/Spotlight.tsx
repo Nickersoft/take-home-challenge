@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import SpotlightResults from "./SpotlightResults";
 
@@ -15,10 +15,13 @@ import "./Spotlight.scss";
 
 type Props = {
   onSelect: (selectedItem: Model) => void;
+  onDismiss?: () => void;
   visible: boolean;
 };
 
-function Spotlight({ visible, onSelect }: Props) {
+function Spotlight({ onDismiss, visible, onSelect }: Props) {
+  const node = useRef<HTMLDivElement | null>(null);
+
   const [results, setResults] = useState<SpotlightSectionType[]>([]);
   const [selectedItem, setSelectedItemID] = useKeyboardNavigation(results);
   const [shouldRender, setRender] = useState(visible);
@@ -36,15 +39,28 @@ function Spotlight({ visible, onSelect }: Props) {
     }
   }
 
+  const animation = `${visible ? "fadeUp" : "fadeDown"} 0.3s ease-in-out`;
+
+  useEffect(() => {
+    const onMouseDown = (e: MouseEvent) => {
+      if (!node.current?.contains(e.target as Node)) {
+        onDismiss?.();
+      }
+    };
+
+    document.addEventListener("mousedown", onMouseDown);
+
+    return () => document.removeEventListener("mousedown", onMouseDown);
+  }, []);
+
   if (!shouldRender) {
     return null;
   }
 
-  const animation = `${visible ? "fadeUp" : "fadeDown"} 0.3s ease-in-out`;
-
   return (
     <SelectedItemContext.Provider value={{ selectedItem, setSelectedItemID }}>
       <div
+        ref={node}
         className="Spotlight"
         style={{ animation }}
         onAnimationEnd={onAnimationEnd}
