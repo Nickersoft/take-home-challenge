@@ -25,7 +25,7 @@ $highlightColor: #5192f4;
 }
 
 .Spotlight {
-  max-width: 500px;
+  max-width: 600px;
   transform: translateX(-50%);
   border-radius: 8px;
   top: 15%;
@@ -107,9 +107,19 @@ $highlightColor: #5192f4;
       li {
         font-size: 0.8rem;
         line-height: 1.25em;
-        padding: 4px;
+        padding: 8px 4px;
         color: $baseColor;
         border-radius: 4px;
+
+        .author {
+          opacity: 0.75;
+        }
+
+        .modified {
+          opacity: 0.5;
+          margin-top: 2px;
+          font-size: 0.7rem;
+        }
 
         &.active {
           color: #fff;

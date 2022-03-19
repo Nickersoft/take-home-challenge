@@ -15,7 +15,12 @@ function SpotlightSection({ item }: Props) {
 
   return (
     <li ref={node} data-item-id={item.id} className={isActive ? "active" : ""}>
-      {item.id}
+      {item.id}&nbsp;
+      {item.author && <span className="author">by {item.author}</span>}
+      <div className="modified">
+        {item.type} &bull; Modified on&nbsp;
+        {new Date(item.modified).toLocaleDateString("en")}
+      </div>
     </li>
   );
 }
