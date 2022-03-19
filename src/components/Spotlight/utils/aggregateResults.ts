@@ -1,6 +1,5 @@
 import Fuse from "fuse.js";
-
-import { startCase } from "lodash";
+import startCase from "lodash/startCase";
 
 import { Model } from "../../../API";
 import { SpotlightSectionType } from "../SpotlightSection";
