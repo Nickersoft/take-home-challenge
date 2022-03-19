@@ -1,17 +1,18 @@
 import { useState } from "react";
 
 import Instructions from "../Instructions";
-import Placeholder from "../Spotlight";
+import Spotlight from "../Spotlight";
 import Trigger from "../Trigger";
 import SelectedOutput from "../SelectedOutput";
 
 import "./App.css";
 
 function App() {
+  const [spotlightOpen, setSpotlightOpened] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>();
 
   function handleTrigger() {
-    setSelected("No implementation; unhandled trigger");
+    setSpotlightOpened(true);
   }
 
   return (
@@ -20,8 +21,15 @@ function App() {
       <div className="Implementation">
         <Trigger onTrigger={handleTrigger} />
 
-        {/* Replace the Placeholder component below with your implementation */}
-        <Placeholder />
+        {spotlightOpen && (
+          <Spotlight
+            onSelect={(item) => {
+              console.log(item);
+              setSelected(item.id);
+              setSpotlightOpened(false);
+            }}
+          />
+        )}
 
         <SelectedOutput selected={selected} />
       </div>
